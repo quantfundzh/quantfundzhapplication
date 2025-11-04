@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Quantitative Research & Trading Team — InvestmentClub Zurich Fund</title>
+<meta name="description" content="Join the Quantitative Research & Trading Team of the InvestmentClub Zurich Fund. Algorithmic trading, machine learning, financial research, and open-source finance engineering for ambitious students." />
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+
+<style>
+/* ========================================== DESIGN TOKENS =========================================== */
+:root {
+  --bg: #000;
+  --fg: #fff;
+  --muted: #cfcfcf;
+  --mid: #1b1b1b;
+  --line: #2a2a2a;
+  --title-font: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  --text-font: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 40px;
+  --s-8: 56px;
+  --s-9: 72px;
+  --s-10: 96px;
+
+  --accent: #7aa2ff;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--text-font);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+img, video { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+.container { width: min(1200px, 92%); margin-inline: auto; }
+
+/* Type */
+.eyebrow { letter-spacing: .12em; text-transform: uppercase; color: var(--muted); font-size: .78rem; }
+h1, h2, h3 { font-family: var(--title-font); font-weight: 700; margin: 0 0 var(--s-4); }
+h1 { font-size: clamp(2rem, 4.5vw, 3.5rem); line-height: 1.05; }
+h2 { font-size: clamp(1.5rem, 3.5vw, 2.25rem); line-height: 1.1; }
+h3 { font-size: clamp(1.1rem, 2.8vw, 1.4rem); letter-spacing: .02em; }
+p { color: #e6e6e6; margin: 0 0 var(--s-4); line-height: 1.6; }
+.muted { color: var(--muted); }
+
+/* UI */
+.window { background: var(--mid); border: 1px solid var(--line); border-radius: 16px; }
+.divider { height: 1px; background: var(--line); margin: var(--s-7) 0; }
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 12px 18px; border-radius: 999px;
+  border: 1px solid var(--line); background: #0a0a0a;
+  color: var(--fg); font-weight: 600;
+}
+.btn:hover { background: #111; }
+
+header.site {
+  position: sticky; top: 0; z-index: 10;
+  backdrop-filter: blur(6px);
+  background: color-mix(in srgb, #000 80%, transparent);
+  border-bottom: 1px solid var(--line);
+}
+.nav {
+  display: flex; align-items: center;
+  justify-content: space-between; height: 64px;
+}
+.nav a { color: var(--muted); font-weight: 600; }
+.nav a:hover { color: var(--fg); }
+.nav .brand { color: var(--fg); font-family: var(--title-font); letter-spacing: .04em; }
+
+.hero { padding: var(--s-9) 0 var(--s-8); }
+.hero .lede { font-size: clamp(1rem, 2.2vw, 1.25rem); color: var(--muted); }
+.hero .cta { margin-top: var(--s-5); display: flex; gap: 12px; flex-wrap: wrap; }
+
+.grid { display: grid; gap: var(--s-5); }
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-5); }
+.stat { text-align: center; padding: var(--s-6); border-radius: 12px; background: #0d0d0d; border: 1px solid var(--line); }
+.stat .num { font-family: var(--title-font); font-size: clamp(1.6rem, 4vw, 2.4rem); }
+.stat .label { color: var(--muted); font-size: .9rem; }
+
+.list { display: grid; gap: var(--s-4); }
+.list li {
+  display: grid; grid-template-columns: 18px 1fr;
+  gap: 10px; align-items: start; color: #eaeaea;
+}
+.dot { width: 10px; height: 10px; border-radius: 50%; background: #a3a3a3; margin-top: 7px; }
+
+form.contact { display: grid; gap: var(--s-4); }
+input, textarea {
+  width: 100%; padding: 12px 14px; border-radius: 12px;
+  background: #0b0b0b; border: 1px solid var(--line);
+  color: var(--fg); font: inherit;
+}
+label { font-size: .9rem; color: var(--muted); }
+.note { font-size: .85rem; color: var(--muted); }
+
+footer { color: var(--muted); padding: var(--s-7) 0 var(--s-9); }
+
+/* Responsive */
+@media (max-width: 599px) {
+  .nav .links { display: none; }
+  .hero .grid { grid-template-columns: 1fr; }
+  .stats { grid-template-columns: 1fr 1fr; }
+}
+@media (min-width: 600px) {
+  .nav .links { display: flex; gap: 20px; }
+  .hero .grid { grid-template-columns: 1.2fr .8fr; align-items: end; }
+  .two { grid-template-columns: 1fr 1fr; }
+  .stats { grid-template-columns: repeat(3, 1fr); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="site">
+  <div class="container nav">
+    <div class="brand">InvestmentClub Zurich — Quant Team</div>
+    <nav class="links" aria-label="Primary">
+      <a href="#about">About</a>
+      <a href="#work">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#apply">Apply</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="container grid hero grid">
+    <div>
+      <span class="eyebrow">Quantitative Research & Trading</span>
+      <h1>Build strategies, design models, publish research — and trade real markets.</h1>
+      <p class="lede">
+        A high-performance engineering and finance environment inside the InvestmentClub Zurich Fund.
+        Designed for ambitious ETH, UZH, HSG and similar students who want to prove themselves in quant finance.
+      </p>
+      <div class="cta">
+        <a class="btn" href="#apply">Apply now</a>
+        <a class="btn" href="#work">See projects</a>
+      </div>
+    </div>
+
+    <div>
+      <div class="window" style="padding: var(--s-6);">
+        <p class="muted">Core Focus:</p>
+        <ul class="list" style="margin-top: var(--s-3);">
+          <li><span class="dot"></span><span>Algorithmic trading & signal discovery</span></li>
+          <li><span class="dot"></span><span>Machine learning & neural forecasting</span></li>
+          <li><span class="dot"></span><span>Risk optimization & backtesting pipelines</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="divider container"></div>
+  </div>
+</section>
+
+
+<!-- ================= ABOUT ================= -->
+<section id="about" class="container" style="padding: var(--s-8) 0;">
+  <div class="grid two">
+    <div class="window" style="padding: var(--s-6);">
+      <h2>Who We Are</h2>
+      <p>
+        We are the Quantitative Research & Trading Team of the InvestmentClub Zurich Fund,
+        founded at the start of HS25.
+      </p>
+      <p>
+        Our team consists primarily of ETH Zürich master’s and PhD students in computational finance, data science,
+        mathematics, and computer science. We build real trading systems, deploy real strategies, and produce
+        research-grade results. 
+      </p>
+      <p>
+        Students from <strong>ETH Zürich</strong>, <strong>UZH</strong>, <strong>HSG</strong> or similar are welcome to apply.
+      </p>
+    </div>
+
+    <div class="window" style="padding: var(--s-6);">
+      <h3>Why Join</h3>
+      <ul class="list">
+        <li><span class="dot"></span><span>Work on real trading systems for the fund</span></li>
+        <li><span class="dot"></span><span>Publish research and open-source libraries</span></li>
+        <li><span class="dot"></span><span>Build a career-proof portfolio in quant finance</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="divider container"></div>
+</section>
+
+
+<!-- ================= PROJECTS ================= -->
+<section id="work" class="container" style="padding: var(--s-8) 0;">
+  <div class="grid two">
+    <div class="window" style="padding: var(--s-6);">
+      <h2>What We Work On</h2>
+      <p>
+        Our mission is twofold: build profitable trading strategies for the fund, and advance the science
+        of quantitative finance through open-source tools and research.
+      </p>
+      <p>
+        Members choose their path: neural predictors, reinforcement learning agents, feature engineering,
+        factor models, alpha discovery, or research replications of institutional papers.
+      </p>
+    </div>
+
+    <div class="window" style="padding: var(--s-6);">
+      <h3>Active Directions</h3>
+      <ul class="list">
+        <li><span class="dot"></span><span>Deep learning for market prediction</span></li>
+        <li><span class="dot"></span><span>Reinforcement learning trading agents</span></li>
+        <li><span class="dot"></span><span>Publishing an open-source Python trading library</span></li>
+        <li><span class="dot"></span><span>Research paper: ML for time-series classification</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="divider container"></div>
+</section>
+
+
+<!-- ================= SKILLS ================= -->
+<section id="skills" class="container" style="padding: var(--s-8) 0;">
+  <h2>Skills We Look For</h2>
+  <p class="muted">
+    You don’t need all of these — strength in one area is enough.
+  </p>
+
+  <div class="window" style="padding: var(--s-6);">
+    <ul class="list">
+      <li><span class="dot"></span><span>Python engineering (clean code, testing, Git)</span></li>
+      <li><span class="dot"></span><span>Building machine learning pipelines & tuning models</span></li>
+      <li><span class="dot"></span><span>Time-series forecasting & algorithmic trading</span></li>
+      <li><span class="dot"></span><span>Financial mathematics, risk modelling, and strategy metrics</span></li>
+      <li><span class="dot"></span><span>Academic paper replication and research mindset</span></li>
+    </ul>
+  </div>
+
+  <div class="divider container"></div>
+</section>
+
+
+<!-- ================= APPLY ================= -->
+<section id="apply" class="container" style="padding: var(--s-8) 0;">
+  <span class="eyebrow">APPLICATION</span>
+  <h2>Join the Quant Team</h2>
+  <p class="muted">If you’re driven, analytical, and ambitious — apply.</p>
+<form class="contact">
+  <div>
+    <label>What would you most like to work on?</label>
+    <input name="workPreference" required placeholder="Trading · Machine Learning · Research · Software Engineering" />
+  </div>
+
+  <div>
+    <label>What drives your interest in our fund team as an Analyst?</label>
+    <textarea name="interest" rows="4" required placeholder="Tell us what motivates you"></textarea>
+  </div>
+
+  <div>
+    <label>What objectives do you hope to achieve as an Analyst?</label>
+    <textarea name="objectives" rows="4" required></textarea>
+  </div>
+
+  <div>
+    <label>What unique skills or experiences do you bring?</label>
+    <textarea name="skills" rows="4" required></textarea>
+  </div>
+
+  <div>
+    <label>What additional skills or experiences do you have (not directly related)?</label>
+    <textarea name="extraSkills" rows="3"></textarea>
+  </div>
+
+  <div>
+    <label>Your LinkedIn Profile</label>
+    <input name="linkedin" type="url" placeholder="https://linkedin.com/in/you" />
+  </div>
+
+  <div>
+    <label>Name</label>
+    <input name="name" required placeholder="Full name" />
+  </div>
+
+  <div>
+    <label>University</label>
+    <input name="university" required placeholder="ETH · UZH · HSG · other" />
+  </div>
+
+  <div>
+    <label>Degree Program</label>
+    <input name="program" required placeholder="BSc · MSc · PhD" />
+  </div>
+
+  <div>
+    <label>Current Semester</label>
+    <input name="semester" required placeholder="e.g., 3rd semester" />
+  </div>
+
+  <div>
+    <label>Email</label>
+    <input name="email" type="email" required placeholder="you@uni.ch" />
+  </div>
+
+  <div>
+    <label>Phone</label>
+    <input name="phone" required placeholder="+41 ..." />
+  </div>
+
+  <button class="btn" type="submit">Submit Application</button>
+  <p id="thanks" class="note" hidden>Application received. We will reach out if selected.</p>
+</form>
+
+</section>
+
+
+<footer class="container">
+  <div class="divider"></div>
+  <p>© <span id="y"></span> InvestmentClub Zurich — Quant Research & Trading</p>
+</footer>
+
+<script>
+document.getElementById('y').textContent = new Date().getFullYear();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<script>
+(function() {
+  emailjs.init("XJhc1Cy7_aCOnt45f");
+
+  const form = document.querySelector("form.contact");
+
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const data = {
+      workPreference: form.workPreference.value,
+      interest: form.interest.value,
+      objectives: form.objectives.value,
+      skills: form.skills.value,
+      extraSkills: form.extraSkills.value,
+      linkedin: form.linkedin.value,
+      name: form.name.value,
+      university: form.university.value,
+      program: form.program.value,
+      semester: form.semester.value,
+      email: form.email.value,
+      phone: form.phone.value
+    };
+
+    emailjs.send("service_c3q0dqg", "template_dhefx17", data)
+      .then(() => {
+        document.getElementById("thanks").hidden = false;
+        form.reset();
+      })
+      .catch((err) => console.error("❌ Email failed:", err));
+  });
+})();
+</script>
+
+</body>
+</html>
